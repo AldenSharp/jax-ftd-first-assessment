@@ -3,26 +3,7 @@ Presentation - JavaScript client:
   * Complete "TODO" sections in the cli.js file.
 
 Domain - Java server:
-  * Import libraries for JAXB, Moxy, and SQL.
-  * Create the following structure within "java-server.src.main.java.com.cooksys.ftd.files":
-    * main.java
-    * dao (Contains all SQL queries to be run, for each table.)
-      * AbstractDao.java
-      * FileDao.java
-      * UserDao.java
-      * UserFileDao.java
-    * model
-      * api
-        * (Various "command" java classes)
-      * db (Takes the table as a class, takes its columns as class fields.)
-        * File.java
-        * User.java
-        * UserFile.java
-    * server
-  * Create a "main" class that implements a server.
-  * Create a "server" class that implements client handlers.
-  * Create a "client handler" class that connects directly to the JavaScript layer.
-  * Create a "client command" class that models client commands as objects.
+  * Create all necessary api classes.
   * Write a "response" class that models responses as objects.
   * Use JAXB/Moxy to serialize and deserialize client commands and responses.
   * Use an ExecutorService to handle a many-threaded situation.

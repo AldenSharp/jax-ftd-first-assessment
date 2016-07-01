@@ -6,13 +6,13 @@ public class File {
 
 	private Integer fileId;
 	private String filepath;
-	private String filedata; // Turn this type into ByteArray
+	private byte[] filedata;
 
 	public File() {
 		super();
 	}
 
-	public File(Integer fileId, String filepath, String filedata) { // Turn the filedata type into ByteArray
+	public File(Integer fileId, String filepath, byte[] filedata) {
 		super();
 		this.fileId = fileId;
 		this.filepath = filepath;
@@ -35,11 +35,11 @@ public class File {
 		this.filepath = filepath;
 	}
 
-	public String getFiledata() { // convert to ByteArray
+	public byte[] getFiledata() {
 		return filedata;
 	}
 
-	public void setFiledata(String filedata) { // convert to ByteArray 
+	public void setFiledata(byte[] filedata) { 
 		this.filedata = filedata;
 	}
 

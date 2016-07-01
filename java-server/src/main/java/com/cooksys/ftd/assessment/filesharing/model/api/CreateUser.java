@@ -10,7 +10,7 @@ public class CreateUser {
 		UserDao userDao = new UserDao();
 		Response<String> output = new Response<String>();
 		String[] args = userInfo.split(" ");
-		short check = GetUser.getId(args[0]).getData();
+		short check = GetUser.getID(args[0]).getData();
 		
 		if(check == 0) {
 			user.setUsername(args[0]);
@@ -19,6 +19,7 @@ public class CreateUser {
 		} else {
 			output.setError(true);
 		}
+		return output;
 	}
 
 }
