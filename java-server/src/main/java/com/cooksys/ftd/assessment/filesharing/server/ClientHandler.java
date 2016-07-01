@@ -12,7 +12,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import org.eclipse.persistence.jaxb.MarshallerProperties;
+// import org.eclipse.persistence.jaxb.MarshallerProperties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +36,10 @@ public class ClientHandler implements Runnable {
 	private UserFileDao userFileDao;
 	private UserDao userDao;
 	
-	public void respond(Response temp) {
+	public void respond(Response temp) throws JAXBException {
 		StringWriter w = new StringWriter();
 		this.jaxb = JAXBContext.newInstance(Response.class);
-		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
+//		marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
 		marshaller.marshal(temp.getData(), w);
 		this.writer.println(w.toString());
 		this.writer.flush();
@@ -65,7 +65,7 @@ public class ClientHandler implements Runnable {
 				Response<String> temp = SendFile.getFile(message.getContent());
 				respond(temp);
 			}
-		} catch (IOException | JAXBException e) {
+		} catch (IOException | JAXBException | ClassNotFoundException e) {
 			log.error("Client handler error.");
 		}
 	}

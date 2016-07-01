@@ -6,12 +6,12 @@ import com.cooksys.ftd.assessment.filesharing.dao.FileDao;
 
 public class IndexFiles {
 	
-	public static Response<List<String>> getFileList(String userInfo) {
+	public static Response<List<String>> getFileList(String userInfo) throws ClassNotFoundException {
 		Response<List<String>> output = new Response<List<String>>();
 		FileDao fileDao = new FileDao();
 		short id = GetUser.getID(userInfo).getData();
 		
-		output.setData(fileDao.indexFile(id));
+		output.setData(fileDao.getFileList(id));
 
 		return output;
 	}

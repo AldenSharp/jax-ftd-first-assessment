@@ -6,12 +6,12 @@ import com.cooksys.ftd.assessment.filesharing.dao.FileDao;
 
 public class SendFile {
 	
-	public static Response<String> getFile(String userInfo) {
+	public static Response<String> getFile(String userInfo) throws ClassNotFoundException {
 		FileDao fileDao = new FileDao();
 		Response<String> output = new Response<String>();
 		String[] args = userInfo.split(" ");
 		
-		byte[] data = fileDao.sendFile(Short.parseShort(args[0]), Short.parseShort(args[1]));
+		byte[] data = fileDao.getFile(Short.parseShort(args[0]), Short.parseShort(args[1]));
 		output.setData(Base64.getEncoder().encodeToString(data));
 		
 		return output;

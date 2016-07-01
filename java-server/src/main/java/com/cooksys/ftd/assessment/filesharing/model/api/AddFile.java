@@ -9,7 +9,7 @@ import com.cooksys.ftd.assessment.filesharing.model.db.User;
 public class AddFile {
 	private User user;
 	
-	public static Response<String> newFile(String userInfo) {
+	public static Response<String> newFile(String userInfo) throws ClassNotFoundException {
 		File file = new File();
 		FileDao fileDao = new FileDao();
 		Response<String> output = new Response<String>();

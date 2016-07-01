@@ -6,7 +6,7 @@ import com.cooksys.ftd.assessment.filesharing.dao.UserDao;
 
 public class GetUser {
 
-	public static Response<Short> getID(String username) {
+	public static Response<Short> getID(String username) throws ClassNotFoundException {
 		UserDao userDao = new UserDao();
 		Response<Short> output = new Response<Short>();
 		Optional<Short> temp = userDao.getUserID(username);
@@ -14,7 +14,7 @@ public class GetUser {
 		return output;
 	}
 
-	public static Response<Short> getPassword(String username) {
+	public static Response<Short> getPassword(String username) throws ClassNotFoundException {
 		UserDao userDao = new UserDao();
 		Response<Short> output = new Response<Short>();
 		Optional<Short> temp = userDao.getPassword(username);
