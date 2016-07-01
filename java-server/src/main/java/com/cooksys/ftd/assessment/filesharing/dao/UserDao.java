@@ -48,8 +48,30 @@ public class UserDao extends AbstractDao {
 		}
 	}
 	
-	public Optional<Short> getUserID(String uname) throws ClassNotFoundException {
+	public Boolean findUser(String username) throws ClassNotFoundException {
+		Class.forName(driver);
 		
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+			
+			String sql = "select username from user";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				if(username == rs.getString("username")) {
+					return true;
+				}
+			}
+			
+			return false;
+		} catch (SQLException e) {
+			log.error("Query Error from UserDao.findUser method. This method will now return null.");
+			return null;
+		}
+	}
+	
+	public Optional<Short> getUserID(String uname) throws ClassNotFoundException {
 		Class.forName(driver);
 		
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -74,7 +96,6 @@ public class UserDao extends AbstractDao {
 	}
 	
 	public Optional<Short> getPassword(String uname) throws ClassNotFoundException {
-		
 		Class.forName(driver);
 		
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {

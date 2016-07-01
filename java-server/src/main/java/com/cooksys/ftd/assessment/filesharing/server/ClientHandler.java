@@ -49,24 +49,39 @@ public class ClientHandler implements Runnable {
 	public void run() {
 		
 		try {
-			StringReader r = new StringReader(this.reader.readLine());
-			this.jaxb = JAXBContext.newInstance(Message.class);
-			Message message = (Message) unmarshaller.unmarshal(r);
+			log.info("Received command.");
+			String echo = reader.readLine();
+			Message message = Parse.unmarshall(echo);
+			log.info("Parsed command: " + message.getCommand());
+			log.info("Parsed content: " + message.getContent());
+//			StringReader r = new StringReader(reader.readLine());
+//			this.jaxb = JAXBContext.newInstance(Message.class);
+//			log.info("Prepared marshaller.");
+//			Message message = (Message) unmarshaller.unmarshal(r);
 			if (message.getCommand() == "register") {
+				log.info("Received register command.");
 				Response<String> temp = CreateUser.newUser(message.getContent());
 				respond(temp);
+			} else if (message.getCommand() == "isRegistered") {
+				log.info("Received isRegistered command.");
+				Response<Boolean> temp = IsRegistered.getBoolean(message.getContent());
+				respond(temp);
 			} else if (message.getCommand() == "files") {
+				log.info("Received files command.");
 				Response<List<String>> temp = IndexFiles.getFileList(message.getContent());
 				respond(temp);
 			} else if (message.getCommand() == "upload") {
+				log.info("Received upload command.");
 				Response<String> temp = AddFile.newFile(message.getContent());
 				respond(temp);
 			} else if (message.getCommand() == "download") {
+				log.info("Received download command.");
 				Response<String> temp = SendFile.getFile(message.getContent());
 				respond(temp);
 			}
+			log.info("Command finished. Closing connection.");
 		} catch (IOException | JAXBException | ClassNotFoundException e) {
-			log.error("Client handler error.");
+			log.error("Client handler error: ", e);
 		}
 	}
 

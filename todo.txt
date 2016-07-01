@@ -2,12 +2,4 @@ Presentation - JavaScript client:
   * It is recommended to open and close connections to the server for each command, rather than keeping connections open indefinitely.
   * Complete "TODO" sections in the cli.js file.
 
-Domain - Java server:
-  * Create all necessary api classes.
-  * Write a "response" class that models responses as objects.
-  * Use JAXB/Moxy to serialize and deserialize client commands and responses.
-  * Use an ExecutorService to handle a many-threaded situation.
-  * Store all user data in the database instead of memory.
-  * It is recommended to organize the JDBC code into DAO classes.
-
 (The project should be able to handle files of any type or encoding.)
